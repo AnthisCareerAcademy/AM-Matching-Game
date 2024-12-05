@@ -1,2 +1,2 @@
-# AM-Matching-Game
+# PM-Matching-Game
 Allen Interactive Solutions - Matching Game
