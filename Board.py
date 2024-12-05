@@ -1,23 +1,26 @@
 import pygame as p
 
 p.init()
-x = 600
-y = 600
 
-scrn = p.display.set_mode((x,y))
+class MatchingGame:
 
-p.display.set_caption('Matching Game')
+    def __init__(self):
+        self.x = 600
+        self.y = 600
+        self.color = (220, 20, 60)
+        self.scrn = p.display.set_mode((self.x,self.y))
+        self.status = True
 
-color = (220, 20, 60)
 
-scrn.fill(color)
+    def create_screen(self):
+        p.display.set_caption('MatchingGame')
+        self.scrn.fill(self.color)
+        p.display.flip()
 
-p.display.flip()
-status = True
 
-while status:
-    for i in p.event.get():
-        if i.type == p.QUIT:
-            status = False
-
-p.quit()
+    def check_condition(self):
+        while self.status:
+            for i in p.event.get():
+                if i.type == p.QUIT:
+                    self.status = False
+        p.quit()
