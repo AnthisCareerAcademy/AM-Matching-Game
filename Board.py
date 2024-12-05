@@ -8,7 +8,7 @@ class MatchingGame:
 
     #Declares all the variables the class will use
     def __init__(self):
-        self.x = 1000
+        self.x = 1800
         self.y = 1000
         self.color = (220, 20, 60)
         self.scrn = p.display.set_mode((self.x,self.y))
