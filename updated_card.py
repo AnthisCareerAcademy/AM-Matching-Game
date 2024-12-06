@@ -22,6 +22,7 @@ pygame.init()
 # Set up the display
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("PM Anthis Memory Game")
+symbol_face_down = pygame.image.load('cover_art/cover_art.jpg').convert()
 
 # Card class
 class Card:
@@ -53,9 +54,9 @@ def create_card_positions():
 
 # Generate pairs of symbols (for a memory matching game)
 def generate_pairs():
-    symbols = list(range(8)) * 2  # 8 unique symbols, each appearing twice
-    random.shuffle(symbols)
-    return symbols
+    symbols_face_up = [pygame.image.load("Matching game/A.png").convert(), pygame.image.load("Matching game/B.png").convert(), pygame.image.load("Matching game/C.png").convert(), pygame.image.load("Matching game/H.png").convert(), pygame.image.load("Matching game/L.png").convert(), pygame.image.load("Matching game/P.png").convert(), pygame.image.load("Matching game/S.png").convert(), pygame.image.load("Matching game/W.png").convert()] * 2  # 8 unique symbols, each appearing twice
+    random.shuffle(symbols_face_up)
+    return symbols_face_up
 
 # Create the cards
 def create_cards():
