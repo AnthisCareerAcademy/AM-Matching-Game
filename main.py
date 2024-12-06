@@ -2,19 +2,12 @@ import pygame
 import random
 
 # Constants for card and game setup
-CARD_SIZE = 150
+CARD_SIZE = 200
 MARGIN = 40
 NUM_ROWS = 4
 NUM_COLS = 4
 WIDTH = (CARD_SIZE + MARGIN) * NUM_COLS + MARGIN
 HEIGHT = (CARD_SIZE + MARGIN) * NUM_ROWS + MARGIN
-
-# Colors
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-GREEN = (0, 255, 0)
-RED = (255, 0, 0)
-YELLOW = (255, 255, 0)
 
 # Initialize Pygame
 pygame.init()
@@ -35,10 +28,10 @@ class Card:
 
     def draw(self, screen):
         if self.revealed or self.matched:
-            image = pygame.transform.scale(self.symbol,(150,150))
-            screen.blit(image, (self.position[0] + 35, self.position[1] + 25))
+            image = pygame.transform.scale(self.symbol,(300,120))
+            screen.blit(image, (self.position[0] + 35-90, self.position[1] + 25))
         else:
-            image = pygame.transform.scale(symbol_face_down, (150, 150))
+            image = pygame.transform.scale(symbol_face_down, (120, 120))
             screen.blit(image, (self.position[0] + 35, self.position[1] + 25))
 
 # Create card positions on the board
@@ -75,7 +68,7 @@ def game_loop():
     clock = pygame.time.Clock()
     running = True
     while running:
-        screen.fill(BLACK)
+        screen.fill('black')
 
         # Draw all cards
         for card in cards:
@@ -100,9 +93,6 @@ def game_loop():
                     card.draw(screen)
                     pygame.display.flip()
 
-
-
-
             # Check if two cards are flipped
             if first_card and second_card:
                 pygame.time.wait(500)
@@ -118,7 +108,6 @@ def game_loop():
 
                 first_card = None
                 second_card = None
-
 
         clock.tick(30)
 
