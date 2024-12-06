@@ -4,15 +4,9 @@ import importlib.util
 import subprocess
 import sys
 
-def ensure_package_installed(package_name):
-    # Check if the package is installed
-    if importlib.util.find_spec(package_name) is None:
-        # Install the package using pip
-        subprocess.check_call([sys.executable, "-m", "pip", "install", package_name])
-        print(f"'{package_name}' has been installed successfully.")
-
-# Example usage
-ensure_package_installed("pygame")
+if importlib.util.find_spec("pygame") is None:
+    # Install the package using pip
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "pygame
 
 # Constants for card and game setup
 CARD_SIZE = 200
