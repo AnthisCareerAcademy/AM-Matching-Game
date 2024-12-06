@@ -2,8 +2,8 @@ import pygame
 import random
 
 # Constants for card and game setup
-CARD_SIZE = 100
-MARGIN = 20
+CARD_SIZE = 150
+MARGIN = 40
 NUM_ROWS = 4
 NUM_COLS = 4
 WIDTH = (CARD_SIZE + MARGIN) * NUM_COLS + MARGIN
@@ -35,12 +35,11 @@ class Card:
 
     def draw(self, screen):
         if self.revealed or self.matched:
-            pygame.draw.rect(screen, WHITE, self.rect)
-            font = pygame.font.Font(None, 74)
-            text = font.render(str(self.symbol), True, RED)
-            screen.blit(text, (self.position[0] + 35, self.position[1] + 25))
+            image = pygame.transform.scale(self.symbol,(150,150))
+            screen.blit(image, (self.position[0] + 35, self.position[1] + 25))
         else:
-            pygame.draw.rect(screen, GREEN, self.rect)
+            image = pygame.transform.scale(symbol_face_down, (150, 150))
+            screen.blit(image, (self.position[0] + 35, self.position[1] + 25))
 
 # Create card positions on the board
 def create_card_positions():
@@ -75,13 +74,14 @@ def game_loop():
     second_card = None
     clock = pygame.time.Clock()
     running = True
-
+    for card in cards:
+        card.draw(screen)
+    pygame.display.flip()
     while running:
         screen.fill(BLACK)
 
         # Draw all cards
-        for card in cards:
-            card.draw(screen)
+
 
         # Event handling
         for event in pygame.event.get():
@@ -98,21 +98,29 @@ def game_loop():
                             first_card = card
                         elif second_card is None:
                             second_card = card
+                    card.draw(screen)
+                    pygame.display.flip()
 
-                # Check if two cards are flipped
-                if first_card and second_card:
-                    if first_card.symbol == second_card.symbol:
-                        first_card.matched = True
-                        second_card.matched = True
-                    else:
-                        pygame.time.wait(500)
-                        first_card.revealed = False
-                        second_card.revealed = False
 
-                    first_card = None
-                    second_card = None
 
-        pygame.display.flip()
+
+            # Check if two cards are flipped
+            if first_card and second_card:
+                pygame.time.wait(500)
+                if first_card.symbol == second_card.symbol:
+                    first_card.matched = True
+                    second_card.matched = True
+                else:
+                    first_card.revealed = False
+                    second_card.revealed = False
+                first_card.draw(screen)
+                second_card.draw(screen)
+                pygame.display.flip()
+
+                first_card = None
+                second_card = None
+
+
         clock.tick(30)
 
 # Start the game
