@@ -74,14 +74,13 @@ def game_loop():
     second_card = None
     clock = pygame.time.Clock()
     running = True
-    for card in cards:
-        card.draw(screen)
-    pygame.display.flip()
     while running:
         screen.fill(BLACK)
 
         # Draw all cards
-
+        for card in cards:
+            card.draw(screen)
+        pygame.display.flip()
 
         # Event handling
         for event in pygame.event.get():
