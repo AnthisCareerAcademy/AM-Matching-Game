@@ -1,5 +1,5 @@
 import Board
-import card
+import updated_card
 
 from Board import MatchingGame
 
