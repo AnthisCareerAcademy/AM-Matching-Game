@@ -25,6 +25,6 @@ Keep Non-Matched Cards Facing Down - Seth Jones, Christian Hartzell
 
 Turn Cards that Have Been Matched Over - Seth Jones, Christian Hartzell
 
-Create a Way to Reset the Game -
+Create a Way to Reset the Game - Caleb York
 
-Save All Scores and Display Top 10 Highest Scores - 
+Save All Scores and Display Top 10 Highest Scores - Caleb York
