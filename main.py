@@ -17,7 +17,7 @@ NUM_ROWS = 4
 NUM_COLS = 4
 WIDTH = (CARD_SIZE + MARGIN) * NUM_COLS + MARGIN
 HEIGHT = (CARD_SIZE + MARGIN) * NUM_ROWS + MARGIN
-scores = []
+scores = ['20','19']
 
 # Initialize Pygame
 pygame.init()
@@ -86,11 +86,7 @@ def game_loop():
     running = True
     not_over = True
     start_time = pygame.time.get_ticks()
-    redo = pygame.Rect(50, 250, 400, 400)
-    nope = pygame.Rect(550, 250, 400, 400)
-    out = 0
-    game_over = True
-    timer_rect = pygame.Rect(100, 50, 200, 50)
+    out = 20
 
     while running:
         screen.fill('black')
@@ -121,11 +117,10 @@ def game_loop():
         clock.tick(60)
 
         pygame.display.flip()
+        running = False
 
         # Event handling
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 pos = pygame.mouse.get_pos()
@@ -157,9 +152,19 @@ def game_loop():
                 second_card = None
 
         clock.tick(30)
-    scores.append(out)
-    scores.sort()
+    return out
+
+def start_restart():
+    out = game_loop()
+
+    redo = pygame.Rect(50, 250, 400, 400)
+    nope = pygame.Rect(550, 250, 400, 400)
+    game_over = True
     while game_over:
+
+        scores.append(out)
+        scores.sort()
+
         screen.fill('black')
 
         font.render_to(screen, (500, 50), f"High Score: {scores[0]}", pygame.Color('dodgerblue'))
@@ -172,23 +177,20 @@ def game_loop():
         screen.blit(image, (550, 250))
 
         pygame.display.flip()
+
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 pos = pygame.mouse.get_pos()
 
                 if redo.collidepoint(pos):
-                    running = True
                     game_loop()
                 if nope.collidepoint(pos):
                     game_over = False
 
 
-
 # Start the game
-game_loop()
+start_restart()
 
 # Quit Pygame
 pygame.quit()
