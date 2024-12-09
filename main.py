@@ -90,6 +90,7 @@ def game_loop():
     nope = pygame.Rect(550, 250, 400, 400)
     out = 0
     game_over = True
+    timer_rect = pygame.Rect(100, 50, 200, 50)
 
     while running:
         screen.fill('black')
@@ -99,10 +100,8 @@ def game_loop():
             font.render_to(screen, (500, 50), f"High Score:", pygame.Color('dodgerblue'))
 
         # Draw all cards
-
         for card in cards:
             card.draw(screen)
-        pygame.display.flip()
 
         for card in cards:
             if not card.matched:
@@ -111,7 +110,7 @@ def game_loop():
             else:
                 running = False
 
-        # Event handling
+        #Timer
         ticks = pygame.time.get_ticks() - start_time
         millis = ticks % 1000
         seconds = int(ticks / 1000 % 60)
@@ -121,6 +120,9 @@ def game_loop():
         pygame.display.flip()
         clock.tick(60)
 
+        pygame.display.flip()
+
+        # Event handling
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
