@@ -142,7 +142,7 @@ def game_loop():
 
             # Check if two cards are flipped
             if first_card and second_card:
-                pygame.time.wait(500)
+                pygame.time.wait(300)
                 if first_card.symbol == second_card.symbol:
                     first_card.matched = True
                     second_card.matched = True
