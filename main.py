@@ -88,6 +88,10 @@ def game_loop():
     nope = pygame.Rect(200, 100, CARD_SIZE, CARD_SIZE)
     while running:
         screen.fill('black')
+        if scores:
+            font.render_to(screen, (500, 50), f"High Score: {scores[0]}", pygame.Color('dodgerblue'))
+        else:
+            font.render_to(screen, (500, 50), f"High Score:", pygame.Color('dodgerblue'))
 
         # Draw all cards
 
@@ -150,8 +154,8 @@ def game_loop():
     scores.sort(reverse=True)
     while True:
         screen.fill('black')
-        font.render_to(screen, (500, 50), f"High Score {scores[0]}", pygame.Color('dodgerblue'))
-        font.render_to(screen, (500, 150), f"Your Score {out}", pygame.Color('dodgerblue'))
+        font.render_to(screen, (500, 50), f"High Score: {scores[0]}", pygame.Color('dodgerblue'))
+        font.render_to(screen, (500, 150), f"Your Score: {out}", pygame.Color('dodgerblue'))
         pygame.display.flip()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
