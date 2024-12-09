@@ -156,7 +156,7 @@ def game_loop():
 
         clock.tick(30)
     scores.append(out)
-    scores.sort(reverse=True)
+    scores.sort()
     while game_over:
         screen.fill('black')
 
