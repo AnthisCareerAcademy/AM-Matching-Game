@@ -3,10 +3,12 @@ import random
 import importlib.util
 import subprocess
 import sys
+import pygame.freetype
+
 
 if importlib.util.find_spec("pygame") is None:
     # Install the package using pip
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "pygame
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "pygame"])
 
 # Constants for card and game setup
 CARD_SIZE = 200
@@ -15,9 +17,13 @@ NUM_ROWS = 4
 NUM_COLS = 4
 WIDTH = (CARD_SIZE + MARGIN) * NUM_COLS + MARGIN
 HEIGHT = (CARD_SIZE + MARGIN) * NUM_ROWS + MARGIN
+scores = []
 
 # Initialize Pygame
 pygame.init()
+clock=pygame.time.Clock()
+font=pygame.freetype.SysFont(None, 34)
+font.origin=True
 
 # Set up the display
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -40,6 +46,7 @@ class Card:
         else:
             image = pygame.transform.scale(symbol_face_down, (120, 120))
             screen.blit(image, (self.position[0] + 35, self.position[1] + 25))
+
 
 # Create card positions on the board
 def create_card_positions():
@@ -67,6 +74,7 @@ def create_cards():
         cards.append(card)
     return cards
 
+
 # Game loop
 def game_loop():
     cards = create_cards()
@@ -74,15 +82,36 @@ def game_loop():
     second_card = None
     clock = pygame.time.Clock()
     running = True
+    not_over = True
+    start_time = pygame.time.get_ticks()
+    redo = pygame.Rect(100, 100, CARD_SIZE, CARD_SIZE)
+    nope = pygame.Rect(200, 100, CARD_SIZE, CARD_SIZE)
     while running:
         screen.fill('black')
 
         # Draw all cards
+
         for card in cards:
             card.draw(screen)
         pygame.display.flip()
 
+        for card in cards:
+            if not card.matched:
+                running = True
+                break
+            else:
+                running = False
+
         # Event handling
+        ticks = pygame.time.get_ticks() - start_time
+        millis = ticks % 1000
+        seconds = int(ticks / 1000 % 60)
+        minutes = int(ticks / 60000 % 24)
+        out = '{minutes:02d}:{seconds:02d}:{millis}'.format(minutes=minutes, millis=millis, seconds=seconds)
+        font.render_to(screen, (100, 50), out, pygame.Color('dodgerblue'))
+        pygame.display.flip()
+        clock.tick(60)
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
@@ -117,6 +146,26 @@ def game_loop():
                 second_card = None
 
         clock.tick(30)
+    scores.append(out)
+    scores.sort(reverse=True)
+    print(scores[0])
+    while True:
+        screen.fill('black')
+        pygame.display.flip()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                pos = pygame.mouse.get_pos()
+
+            if redo == pos:
+                running = True
+                game_loop()
+            elif nope == pos:
+                break
+
+
 
 # Start the game
 game_loop()
