@@ -27,4 +27,4 @@ Turn Cards that Have Been Matched Over - Seth Jones, Christian Hartzell
 
 Create a Way to Reset the Game - Caleb York
 
-Save All Scores and Display Top 10 Highest Scores - Caleb York
+Save All Scores and Display Top Score - Caleb York
