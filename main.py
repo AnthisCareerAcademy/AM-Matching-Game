@@ -148,9 +148,10 @@ def game_loop():
         clock.tick(30)
     scores.append(out)
     scores.sort(reverse=True)
-    print(scores[0])
     while True:
         screen.fill('black')
+        font.render_to(screen, (500, 50), f"High Score {scores[0]}", pygame.Color('dodgerblue'))
+        font.render_to(screen, (500, 150), f"Your Score {out}", pygame.Color('dodgerblue'))
         pygame.display.flip()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
