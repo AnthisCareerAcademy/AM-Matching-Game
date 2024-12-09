@@ -25,7 +25,7 @@ clock=pygame.time.Clock()
 font=pygame.freetype.SysFont(None, 34)
 font.origin=True
 
-# Set up the display
+# Set up the display and images
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("PM Anthis Memory Game")
 symbol_face_down = pygame.image.load('cover_art/cover_art.jpg').convert()
@@ -124,6 +124,8 @@ def game_loop():
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 pos = pygame.mouse.get_pos()
+                
+                #keeps track which cards are being compared
                 for card in cards:
                     if card.rect.collidepoint(pos) and not card.revealed and not card.matched:
                         card.revealed = True
@@ -160,6 +162,8 @@ def start_restart():
     redo = pygame.Rect(50, 250, 400, 400)
     nope = pygame.Rect(550, 250, 400, 400)
     game_over = True
+
+    #checks if the player wants to start a new round
     while game_over:
 
         scores.append(out)
