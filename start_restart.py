@@ -1,8 +1,9 @@
 import pygame
 import pygame.freetype
+from game_loop import game_loop
 
-def start_restart(game_loop, scores, screen, font, redo_image, end_image):
-    out = game_loop()
+def start_restart(scores, screen, font, redo_image, end_image, NUM_ROWS, MARGIN, CARD_SIZE, NUM_COLS, symbol_face_down):
+    out = game_loop(screen, scores, font, NUM_ROWS, MARGIN, CARD_SIZE, NUM_COLS, symbol_face_down)
 
     redo = pygame.Rect(50, 250, 400, 400)
     nope = pygame.Rect(550, 250, 400, 400)
