@@ -117,7 +117,6 @@ def game_loop():
         clock.tick(60)
 
         pygame.display.flip()
-        running = False
 
         # Event handling
         for event in pygame.event.get():
