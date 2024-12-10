@@ -1,8 +1,7 @@
 import pygame
-from main import screen, clock
 
 # Event handling
-def event_handling(cards, first_card, second_card):
+def event_handling(cards, first_card, second_card, screen):
     for event in pygame.event.get():
 
         if event.type == pygame.MOUSEBUTTONDOWN:
@@ -35,5 +34,4 @@ def event_handling(cards, first_card, second_card):
 
             first_card = None
             second_card = None
-
-    clock.tick(30)
+    return first_card, second_card
