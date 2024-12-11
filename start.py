@@ -1,7 +1,6 @@
-import pygame
-from game_loop import game_loop
-from restart import restart
-from start_match import star_match
+import pygame.freetype
+from start_match_letters import star_match_letters
+from start_match_numbers import star_match_numbers
 
 def start(scores, screen, font, redo_image, end_image, NUM_ROWS, MARGIN, CARD_SIZE, NUM_COLS, symbol_face_down,
                   WIDTH, HEIGHT):
@@ -29,11 +28,11 @@ def start(scores, screen, font, redo_image, end_image, NUM_ROWS, MARGIN, CARD_SI
                 pos = pygame.mouse.get_pos()
 
                 if letters.collidepoint(pos):
-                    ready = star_match(scores, screen, font, redo_image, end_image, NUM_ROWS, MARGIN, CARD_SIZE, NUM_COLS,
+                    ready = star_match_letters(scores, screen, font, redo_image, end_image, NUM_ROWS, MARGIN, CARD_SIZE, NUM_COLS,
                             symbol_face_down,
                             WIDTH, HEIGHT)
 
                 if numbers.collidepoint(pos):
-                    ready = star_match(scores, screen, font, redo_image, end_image, NUM_ROWS, MARGIN, CARD_SIZE, NUM_COLS,
+                    ready = star_match_numbers(scores, screen, font, redo_image, end_image, NUM_ROWS, MARGIN, CARD_SIZE, NUM_COLS,
                                symbol_face_down,
                                WIDTH, HEIGHT)

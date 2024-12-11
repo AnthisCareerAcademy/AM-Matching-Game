@@ -2,7 +2,7 @@ import pygame
 import pygame.freetype
 from player_name import get_player_name
 
-def restart(scores, screen, font, redo_image, end_image, NUM_ROWS, MARGIN, CARD_SIZE, NUM_COLS, symbol_face_down,
+def restart(scores, screen, font, redo_image, end_image,
                   WIDTH, HEIGHT, score):
 
     redo = pygame.Rect(50, 250, 400, 400)
