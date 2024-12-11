@@ -28,7 +28,7 @@ font.origin=True
 # Set up the display and images
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("PM Anthis Memory Game")
-symbol_face_down = pygame.image.load('cover_art/cover_art.jpg').convert()
+symbol_face_down = pygame.image.load('cover_art/bloosmoil.png').convert()
 redo_image = pygame.image.load('replay_buttons/play_again.jpg').convert()
 end_image = pygame.image.load('replay_buttons/end_game.jpg').convert()
 
