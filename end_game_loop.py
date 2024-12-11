@@ -6,3 +6,4 @@ def end_game_loop(cards):
             break
         else:
             running = False
+    return running
