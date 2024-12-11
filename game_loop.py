@@ -5,14 +5,13 @@ from event_handling import event_handling
 from create_cards_letters import create_cards_letters
 
 # Game loop
-def game_loop(screen, scores, font, NUM_ROWS, MARGIN, CARD_SIZE, NUM_COLS, symbol_face_down):
+def game_loop(scores, screen, font, NUM_ROWS, MARGIN, CARD_SIZE, NUM_COLS, symbol_face_down):
     cards = create_cards_letters(NUM_ROWS, MARGIN, CARD_SIZE, NUM_COLS, symbol_face_down)
     first_card = None
     second_card = None
     clock = pygame.time.Clock()
     running = True
     start_time = pygame.time.get_ticks()
-    out = 0
 
     while running:
         screen.fill('black')
@@ -25,13 +24,15 @@ def game_loop(screen, scores, font, NUM_ROWS, MARGIN, CARD_SIZE, NUM_COLS, symbo
         for card in cards:
             card.draw(screen)
 
-        end_game_loop(cards)
+        running = end_game_loop(cards)
 
-        out = timer(start_time, font, screen, clock)
+        score = timer(start_time, font, screen, clock)
 
         pygame.display.flip()
 
         first_card, second_card = event_handling(cards, first_card, second_card, screen)
 
         clock.tick(30)
-    return out
+        #running = False
+
+    return score

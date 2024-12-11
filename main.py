@@ -1,13 +1,13 @@
 import importlib.util
 import subprocess
 import sys
+import pygame # type: ignore
+import pygame.freetype # type: ignore
 
 if importlib.util.find_spec("pygame") is None:
     # Install the package using pip
     subprocess.check_call([sys.executable, "-m", "pip", "install", "pygame"])
 
-import pygame
-import pygame.freetype
 
 
 # Constants for card and game setup
@@ -33,10 +33,10 @@ redo_image = pygame.image.load('replay_buttons/play_again.jpg').convert()
 end_image = pygame.image.load('replay_buttons/end_game.jpg').convert()
 
 
-from start_restart import start_restart
+from start import start
 
 # Start the game
-start_restart(scores, screen, font, redo_image, end_image, NUM_ROWS, MARGIN, CARD_SIZE, NUM_COLS, symbol_face_down)
+start(scores, screen, font, redo_image, end_image, NUM_ROWS, MARGIN, CARD_SIZE, NUM_COLS, symbol_face_down, WIDTH, HEIGHT)
 
 # Quit Pygame
 pygame.quit()
