@@ -14,3 +14,5 @@ def timer(start_time, font, screen, clock):
     clock.tick(60)
 
     pygame.display.flip()
+
+    return out

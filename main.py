@@ -1,14 +1,14 @@
 import importlib.util
 import subprocess
 import sys
-import pygame # type: ignore
-import pygame.freetype # type: ignore
+
 
 if importlib.util.find_spec("pygame") is None:
     # Install the package using pip
     subprocess.check_call([sys.executable, "-m", "pip", "install", "pygame"])
 
-
+import pygame
+import pygame.freetype
 
 # Constants for card and game setup
 CARD_SIZE = 200
@@ -28,7 +28,7 @@ font.origin=True
 # Set up the display and images
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("PM Anthis Memory Game")
-symbol_face_down = pygame.image.load('cover_art/bloosmoil.png').convert()
+symbol_face_down = pygame.image.load('cover_art/cover_art.jpg').convert()
 redo_image = pygame.image.load('replay_buttons/play_again.jpg').convert()
 end_image = pygame.image.load('replay_buttons/end_game.jpg').convert()
 
